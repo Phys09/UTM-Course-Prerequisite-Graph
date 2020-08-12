@@ -18,8 +18,8 @@ sta_soup = BeautifulSoup(request_sta.text, 'html.parser')
 
 def Output_Text_Data(s1: BeautifulSoup, s2: BeautifulSoup, s3: BeautifulSoup) -> None:
     """
-    Takes the 3 BeautifulSoup objects and output the html text in a prettyfied
-    format and outputs it into a text file
+    Send the HTML data from the 3 BeautifulSoup objects and writes
+    it to a textfile in a nicely formatted way
     """
     f = open("html_output", "w")
     f.write(s1.prettify + "\n")
