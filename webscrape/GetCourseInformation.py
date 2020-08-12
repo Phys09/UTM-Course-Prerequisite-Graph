@@ -22,9 +22,13 @@ def Output_Text_Data(s1: BeautifulSoup, s2: BeautifulSoup, s3: BeautifulSoup) ->
     it to a textfile in a nicely formatted way
     """
     f = open("html_output", "w")
-    f.write(s1.prettify + "\n")
-    f.write(s2.prettify + "\n")
-    f.write(s3.prettify + "\n")
+    f.write(s1.prettify) 
+    f.write("\n")
+    f.write(s2.prettify)
+    f.write("\n")
+    f.write(s3.prettify)
+    f.write("\n")
+    f.write("END OF FILE")
     f.close
 
 def Print_Text_Data(s1: BeautifulSoup, s2: BeautifulSoup, s3: BeautifulSoup) -> None:
@@ -37,4 +41,6 @@ def Print_Text_Data(s1: BeautifulSoup, s2: BeautifulSoup, s3: BeautifulSoup) -> 
     print(sta_soup.prettify, "\n **END OF STA**\n")
 
 if __name__ == "__main__":
-    pass
+    # First, we output the data to the file
+    Output_Text_Data(csc_soup, mat_soup, sta_soup)
+    Print_Text_Data(csc_soup, mat_soup, sta_soup)
