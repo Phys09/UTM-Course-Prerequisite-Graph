@@ -14,10 +14,9 @@ request_mat = requests.get(mat_link)
 request_sta = requests.get(sta_link)
 
 # Make BeautifulSoup objects for each of the course subjects
-csc_soup = BeautifulSoup(request_csc.text, 'html.parser')
-mat_soup = BeautifulSoup(request_mat.text, 'html.parser')
-sta_soup = BeautifulSoup(request_sta.text, 'html.parser')
-
+csc_soup = BeautifulSoup(request_csc.text, html_parser)
+mat_soup = BeautifulSoup(request_mat.text, html_parser)
+sta_soup = BeautifulSoup(request_sta.text, html_parser)
 
 
 def Output_Text_Data(
@@ -49,7 +48,11 @@ def Output_Text_Data(
     f.close
 
 
-def Print_Text_Data(s1: BeautifulSoup, s2: BeautifulSoup, s3: BeautifulSoup) -> None:
+def Print_Text_Data(
+    s1: BeautifulSoup,
+    s2: BeautifulSoup,
+    s3: BeautifulSoup
+        ) -> None:
     """
     Print the HTML data from the 3 BeautifulSoup objects
     in a prettyfied format to the console
@@ -59,78 +62,28 @@ def Print_Text_Data(s1: BeautifulSoup, s2: BeautifulSoup, s3: BeautifulSoup) -> 
     print(sta_soup.prettify, "\n **END OF STA**\n")
 
 
-def Get_CSC_Titles():
+# Get titles as a result set
+csc_title_result_set = csc_soup.find_all('p', attrs={'class': 'titlestyle'})
+mat_title_result_set = mat_soup.find_all('p', attrs={'class': 'titlestyle'})
+sta_title_result_set = sta_soup.find_all('p', attrs={'class': 'titlestyle'})
+
+# Get course descriptions as a result set
+csc_desc_result_set = csc_soup.find_all('p', attrs={'span': 'normaltext'})
+mat_desc_result_set = mat_soup.find_all('p', attrs={'span': 'normaltext'})
+sta_desc_result_set = sta_soup.find_all('p', attrs={'span': 'normaltext'})
+
+
+def write_csc_titles():
     """
-    Get a list of title strings for CSC courses
+    Simply iterate and print out the result of the csc title
     """
-    pass
-
-
-def Get_CSC_Descriptions():
-    """
-    Get a list of description strings for CSC courses.
-    This descriptions are in order with that of the title list
-    """
-
-
-def Get_CSC_Prerequisites():
-    """
-    Get a list of course prerequisite lists.
-    The index that points to each list of course prerequisites
-    correspond with the title index, and descriptions.
-    """
-
-
-# MAT Section
-
-
-def Get_MAT_Titles():
-    """
-    Get a list of title strings for MAT courses
-    """
-    pass
-
-
-def Get_MAT_Descriptions():
-    """
-    Get a list of description strings for MAT courses.
-    This descriptions are in order with that of the title list
-    """
-
-def Get_MAT_Prerequisites():
-    """
-    Get a list of course prerequisite lists.
-    The index that points to each list of course prerequisites
-    correspond with the title index, and descriptions.
-    """
-
-
-# STA Section
-
-
-def Get_STA_Titles():
-    """
-    Get a list of title strings for STA courses
-    """
-    pass
-
-
-def Get_STA_Descriptions():
-    """
-    Get a list of description strings for STA courses.
-    This descriptions are in order with that of the title list
-    """
-
-
-def Get_STA_Prerequisites():
-    """
-    Get a list of course prerequisite lists.
-    The index that points to each list of course prerequisites
-    correspond with the title index, and descriptions.
-    """
+    f = open("csc_title_set_output.txt", "w")
+    f.write(str(csc_title_result_set[:]))
+    f.close
 
 
 if __name__ == "__main__":
     # First, we output the data to the file
     Output_Text_Data(csc_soup, mat_soup, sta_soup)
+    write_csc_titles()
     # Print_Text_Data(csc_soup, mat_soup, sta_soup)
