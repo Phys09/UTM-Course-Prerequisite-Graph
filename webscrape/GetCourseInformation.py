@@ -19,7 +19,7 @@ mat_soup = BeautifulSoup(request_mat.text, html_parser)
 sta_soup = BeautifulSoup(request_sta.text, html_parser)
 
 
-def Output_Text_Data(
+def Output_HTML_Data(
     s1: BeautifulSoup,
     s2: BeautifulSoup,
     s3: BeautifulSoup
@@ -44,7 +44,6 @@ def Output_Text_Data(
     f = open("html_output_sta.html", "w")
     f.write(str(s3.prettify))
     f.write("\n")
-    f.close
     f.close
 
 
@@ -78,12 +77,33 @@ def write_csc_titles():
     Simply iterate and print out the result of the csc title
     """
     f = open("csc_title_set_output.txt", "w")
-    f.write(str(csc_title_result_set[:]))
+    for tag_data in csc_title_result_set:
+        f.write(str(tag_data.text) + ",\n")
+    f.close
+
+
+def write_mat_titles():
+    """
+    Simply iterate and print out the result of the mat title
+    """
+    f = open("mat_title_set_output.txt", "w")
+    f.write(str(mat_title_result_set[:]))
+    f.close
+
+
+def write_sta_titles():
+    """
+    Simply iterate and print out the result of the sta title
+    """
+    f = open("sta_title_set_output.txt", "w")
+    f.write(str(sta_title_result_set[:]))
     f.close
 
 
 if __name__ == "__main__":
     # First, we output the data to the file
-    Output_Text_Data(csc_soup, mat_soup, sta_soup)
+    Output_HTML_Data(csc_soup, mat_soup, sta_soup)
     write_csc_titles()
+    write_mat_titles()
+    write_sta_titles()
     # Print_Text_Data(csc_soup, mat_soup, sta_soup)
