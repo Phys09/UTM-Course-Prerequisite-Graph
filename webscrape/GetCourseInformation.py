@@ -87,7 +87,8 @@ def write_mat_titles():
     Simply iterate and print out the result of the mat title
     """
     f = open("mat_title_set_output.txt", "w")
-    f.write(str(mat_title_result_set[:]))
+    for tag_data in mat_title_result_set:
+        f.write(str(tag_data.text) + ",\n")
     f.close
 
 
@@ -96,7 +97,8 @@ def write_sta_titles():
     Simply iterate and print out the result of the sta title
     """
     f = open("sta_title_set_output.txt", "w")
-    f.write(str(sta_title_result_set[:]))
+    for tag_data in sta_title_result_set:
+        f.write(str(tag_data.text) + ",\n")
     f.close
 
 
