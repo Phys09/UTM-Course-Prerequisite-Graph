@@ -12,11 +12,10 @@ def write_dictionary_data(course_dictionary: Dict[str, List[str]], subject: str)
     :subject: The subject of the course
     """
 
-    file_name = subject + "_course_dictonary.txt"
+    file_name = subject + "_course_dictonary.json"
 
     f = open(file_name, "w")
     f.write(json.dumps(course_dictionary, indent=4))
-    # f.write(str(course_dictionary))
     f.close
 
 def Output_HTML_Data(b: BeautifulSoup, subject: str) -> None:
