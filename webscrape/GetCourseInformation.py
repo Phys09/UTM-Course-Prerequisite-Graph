@@ -40,21 +40,6 @@ sta_courses = cdb.build_course_dictionary(sta_title_result_set, sta_desc_result_
 
 
 if __name__ == "__main__":
-    # First, we output the data to the file
-    wd.Output_HTML_Data(csc_soup, "csc")
-    wd.Output_HTML_Data(mat_soup, "mat")
-    wd.Output_HTML_Data(sta_soup, "sta")
-
-    # Output the titles to a txt file
-    wd.write_set_data(csc_title_result_set, "csc", "title")
-    wd.write_set_data(mat_title_result_set, "mat", "title")
-    wd.write_set_data(sta_title_result_set, "sta", "title")
-
-    # Output the descriptions to a txt file
-    wd.write_set_data(csc_desc_result_set, "csc", "desc")
-    wd.write_set_data(mat_desc_result_set, "mat", "desc")
-    wd.write_set_data(sta_desc_result_set, "sta", "desc")
-
     # Output the dictionary to a txt file
     wd.write_dictionary_data(csc_courses, "csc")
     wd.write_dictionary_data(mat_courses, "mat")
