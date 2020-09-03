@@ -1,6 +1,8 @@
-from WriteData import *  # get all functions from WriteData
-from CourseDictionaryBuilder import *  # get all course builder methods
 import requests  # get the html from websites
+import json
+import WriteData as wd
+import CourseDictionaryBuilder as cdb
+
 from bs4 import BeautifulSoup
 
 html_parser = 'html.parser'  # The HTML parser
@@ -32,28 +34,28 @@ mat_desc_result_set = mat_soup.find_all('span', attrs={'class': 'normaltext'})
 sta_desc_result_set = sta_soup.find_all('span', attrs={'class': 'normaltext'})
 
 # Store course name, description as a dictionary
-csc_courses = build_course_dictionary(csc_title_result_set, csc_desc_result_set)
-mat_courses = build_course_dictionary(mat_title_result_set, mat_desc_result_set)
-sta_courses = build_course_dictionary(sta_title_result_set, sta_desc_result_set)
+csc_courses = cdb.build_course_dictionary(csc_title_result_set, csc_desc_result_set)
+mat_courses = cdb.build_course_dictionary(mat_title_result_set, mat_desc_result_set)
+sta_courses = cdb.build_course_dictionary(sta_title_result_set, sta_desc_result_set)
 
 
 if __name__ == "__main__":
     # First, we output the data to the file
-    Output_HTML_Data(csc_soup, "csc")
-    Output_HTML_Data(mat_soup, "mat")
-    Output_HTML_Data(sta_soup, "sta")
+    wd.Output_HTML_Data(csc_soup, "csc")
+    wd.Output_HTML_Data(mat_soup, "mat")
+    wd.Output_HTML_Data(sta_soup, "sta")
 
     # Output the titles to a txt file
-    write_set_data(csc_title_result_set, "csc", "title")
-    write_set_data(mat_title_result_set, "mat", "title")
-    write_set_data(sta_title_result_set, "sta", "title")
+    wd.write_set_data(csc_title_result_set, "csc", "title")
+    wd.write_set_data(mat_title_result_set, "mat", "title")
+    wd.write_set_data(sta_title_result_set, "sta", "title")
 
     # Output the descriptions to a txt file
-    write_set_data(csc_desc_result_set, "csc", "desc")
-    write_set_data(mat_desc_result_set, "mat", "desc")
-    write_set_data(sta_desc_result_set, "sta", "desc")
+    wd.write_set_data(csc_desc_result_set, "csc", "desc")
+    wd.write_set_data(mat_desc_result_set, "mat", "desc")
+    wd.write_set_data(sta_desc_result_set, "sta", "desc")
 
     # Output the dictionary to a txt file
-    write_dictionary_data(csc_courses, "csc")
-    write_dictionary_data(mat_courses, "mat")
-    write_dictionary_data(sta_courses, "sta")
+    wd.write_dictionary_data(csc_courses, "csc")
+    wd.write_dictionary_data(mat_courses, "mat")
+    wd.write_dictionary_data(sta_courses, "sta")
